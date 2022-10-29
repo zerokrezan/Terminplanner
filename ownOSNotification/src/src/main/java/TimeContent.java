@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class TimeContent {
     @Getter
     String time;
-    private Scanner scanner = new Scanner(new File("/home/rezan/Schreibtisch/ownOSNotification/src/src/main/resources/tmp/time.txt"));
+    private final Scanner scanner = new Scanner(new File("/home/rezan/Schreibtisch/ownOSNotification/src/src/main/resources/tmp/time.txt"));
 
     TimeContent() throws FileNotFoundException {
         String line = null;
