@@ -13,7 +13,6 @@ public class DateContent {
     @Getter
     private String year;
 
-    private Validator validator;
 
     private Scanner scanner = new Scanner(new File("/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/date.txt"));
 

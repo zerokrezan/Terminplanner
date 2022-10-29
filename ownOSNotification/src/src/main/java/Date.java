@@ -1,5 +1,6 @@
 import java.io.*;
 
+//TODO: priuate Methode für redirectOutput erstellen -> siehe Time.java
 public class Date {
 
     ProcessBuilder calendar;
