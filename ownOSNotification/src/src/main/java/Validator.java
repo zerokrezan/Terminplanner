@@ -7,25 +7,51 @@ public class Validator {
 
 @Description("Überprüfen, ob ein Tag angegeben wurde!")
     private boolean checkDay(String day){
-        List days = List.of("01","02","03","04","05","06","07","08","09",
-                "10","11","12","13","14","15","16","17","18","19","20","21","22","23","24",
-                "25","26","27","28","29","30","31");
         try {
-            for (int i = 0; i < days.size(); i++) {
-                if (day.substring(0, 2).contains(days.get(i).toString()))
-                    return true;
+            if( !day.substring(0,2).isBlank()){
+                return true;
             }
-
             return false;
+
         }catch (NullPointerException exception){
             System.out.println("Kein Eintrag vorhanden!");
             return false;
         }
     }
 
+    private boolean checkMonth(String month){
+        try {
+            if( !month.substring(0,2).isBlank()){
+                return true;
+            }
+            return false;
+
+        }catch (NullPointerException exception){
+            System.out.println("Kein Eintrag vorhanden!");
+            return false;
+        }
+    }
+
+	private boolean checkYear(String year){
+		try {
+			if( !year.substring(0,2).isBlank()){
+				return true;
+			}
+			return false;
+
+		}catch (NullPointerException exception){
+			System.out.println("Kein Eintrag vorhanden!");
+			return false;
+		}
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         Validator validator = new Validator();
-        boolean check = validator.checkDay(new DateContent().getDay());
-        System.out.println(check);
+        boolean checkDay = validator.checkDay(new DateContent().getDay());
+        boolean checkMonth = validator.checkMonth(new DateContent().getMonth());
+		boolean checkYear = validator.checkYear(new DateContent().getYear());
+        System.out.println(checkDay);
+        System.out.println(checkMonth);
+        System.out.println(checkYear);
     }
 }
