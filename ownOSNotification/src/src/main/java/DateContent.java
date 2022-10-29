@@ -26,8 +26,8 @@ public class DateContent {
 
             if (line != null)
                 this.day = line.substring(0,3);
-            this.month = line.substring(3,6);
-            this.year = line.substring(6,10);
+                this.month = line.substring(3,6);
+                this.year = line.substring(6,10);
 
         }catch (NoSuchElementException exception){
             System.out.println("Kein Eintrag wurde hinterlegt!");

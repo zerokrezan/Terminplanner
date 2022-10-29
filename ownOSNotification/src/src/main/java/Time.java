@@ -11,21 +11,26 @@ public class Time {
         clock = new ProcessBuilder("zenity",
                 "--entry",
                 "--title=" + title,
-                "--text=" + description);
+                "--text=" + description + "like this: \"09:15 Uhr\"",
+		        "--entry-text=" + "__:__ Uhr");
         return clock;
     }
 
-    public Process run(ProcessBuilder calendar) throws IOException {
-        return calendar.start();
+    public Process run(ProcessBuilder clock) throws IOException {
+		save(clock);
+        return clock.start();
     }
 
-    public static void main(String[] args) throws IOException {
-        ProcessBuilder calendar1;
-        Time time = new Time();
-        calendar1 = time.generate();
+	private void save(ProcessBuilder clock){
+		clock.redirectOutput(new File("/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/time.txt"));
+	}
 
-        calendar1.redirectOutput(new File("/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/time.txt"));
-        time.run(calendar1);
+    public static void main(String[] args) throws IOException {
+        ProcessBuilder clock;
+        Time time = new Time();
+        clock = time.generate();
+
+        time.run(clock);
 
 
     }
