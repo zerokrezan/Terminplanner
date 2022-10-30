@@ -2,6 +2,8 @@ import lombok.Getter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -13,32 +15,65 @@ public class DateContent {
     @Getter
     private String year;
 
+    DateContent(Validator validator, Date date) throws IOException {
 
-    private Scanner scanner = new Scanner(new File("/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/date.txt"));
+		String[] content = setContent(date);
+	    this.day = content[0];
+	    this.month = content[1];
+	    this.year = content[2];
 
-    DateContent() throws FileNotFoundException {
+	    boolean checkDay = validator.checkDay(this.day);
+	    boolean checkMonth = validator.checkMonth(this.month);
+	    boolean checkYear = validator.checkYear(this.year);
 
-        String line = null;
+	    while (!checkDay || !checkMonth || !checkYear){
 
-        try {
-            line = scanner.nextLine();
+		    content = setContent(date);
+		    this.day = content[0];
+		    this.month = content[1];
+		    this.year = content[2];
 
-            if (line != null)
-                this.day = line.substring(0,3);
-                this.month = line.substring(3,6);
-                this.year = line.substring(6,10);
+		    checkDay = validator.checkDay(this.day);
+			checkMonth = validator.checkMonth(this.month);
+			checkYear = validator.checkYear(this.year);
 
-        }catch (NoSuchElementException exception){
-            System.out.println("Kein Eintrag wurde hinterlegt!");
-        }
+	    }
 
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        DateContent date = new DateContent();
-        System.out.println(date.getDay());
-        System.out.println(date.getMonth());
-        System.out.println(date.getYear());
+	private String[] setContent(Date date) throws IOException {
+		PrintWriter pw = new PrintWriter(date.getDestination());
+		Scanner scanner = new Scanner(new File(date.getDestination()));
+		String line = null;
+		String i = null;
+
+		Process process = date.run(date.generate());
+
+		synchronized (scanner){
+			try {
+
+				process.waitFor();
+				line = scanner.nextLine();
+
+				if (line != null)
+					this.day = line.substring(0,3);
+					this.month = line.substring(3,6);
+					this.year = line.substring(6,10);
+
+
+			}catch (NoSuchElementException | InterruptedException exception){
+				System.out.println("Kein Eintrag wurde hinterlegt!");
+
+			}
+		}
+
+		return new String[]{day, month,year};
+	}
+
+	public static void main(String[] args) throws IOException, InterruptedException {
+        DateContent date = new DateContent(new Validator(), new Date());
+		TimeContent timeContent = new TimeContent(new Validator(), new Time());
+
 
     }
 

@@ -47,7 +47,7 @@ public class Validator {
 		}
     }
 
-	@Description("Überprüfen des Formats der Uhrzeiteingabe sowie gültige Uhrzeitangabe")
+	@Description("Überprüfen des Formats der Uhrzeiteingabe sowie (teilweise) gültige Uhrzeitangabe")
 	public boolean checkTime(String time){
 		IntStream hour1 = IntStream.range(0,3);
 		IntStream hour2 = IntStream.range(0,10);
@@ -77,9 +77,9 @@ public class Validator {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Validator validator = new Validator();
-        boolean checkDay = validator.checkDay(new DateContent().getDay());
-        boolean checkMonth = validator.checkMonth(new DateContent().getMonth());
-		boolean checkYear = validator.checkYear(new DateContent().getYear());
+        boolean checkDay = validator.checkDay(new DateContent(new Validator(), new Date()).getDay());
+        boolean checkMonth = validator.checkMonth(new DateContent(new Validator(), new Date()).getMonth());
+		boolean checkYear = validator.checkYear(new DateContent(new Validator(), new Date()).getYear());
 		boolean checkTime = validator.checkTime(new TimeContent(new Validator(), new Time()).getTime());
         System.out.println(checkDay);
         System.out.println(checkMonth);

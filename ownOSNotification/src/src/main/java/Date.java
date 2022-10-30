@@ -1,11 +1,14 @@
+import lombok.Getter;
+
 import java.io.*;
 
 public class Date {
 
     ProcessBuilder calendar;
-    final String title = "calendar";
-    final String description = "choose a date";
-
+    private final String title = "calendar";
+    private final String description = "choose a date";
+	@Getter
+	private final String destination = "/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/date.txt";
 
     public ProcessBuilder generate(){
         calendar = new ProcessBuilder("zenity",
@@ -21,7 +24,7 @@ public class Date {
     }
 
 	private void save(ProcessBuilder calendar){
-		calendar.redirectOutput(new File("/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/date.txt"));
+		calendar.redirectOutput(new File(destination));
 	}
 
 
