@@ -10,33 +10,24 @@ import java.util.Scanner;
 public class TimeContent {
     @Getter
     String time;
-    private Scanner scanner;
-	private Validator validator;
-	private Time clock;
 
-    TimeContent(Validator validator, Time clock) throws IOException, InterruptedException {
+	TimeContent(Validator validator, Time clock) throws IOException, InterruptedException {
 
-	    this.time = setTime(clock);
+		this.time = setTime(clock);
 
-	    this.validator = validator;
-		this.clock = clock;
+		boolean checkTime = new Validator().checkTime(this.time);
 
-		boolean f = new Validator().checkTime(this.time);
-
-		while (!f){
+		while (!checkTime){
 			clock = new Time();
-			//clock.run(clock.generate());
-			//validator = new Validator();
 			this.time = setTime(clock);
-			f = validator.checkTime(this.time);
+			checkTime = validator.checkTime(this.time);
 		}
-
     }
 
 	private String setTime(Time clock) throws IOException, InterruptedException {
 
 		PrintWriter pw = new PrintWriter(clock.getDestination());
-		scanner = new Scanner(new File(clock.getDestination()));
+		Scanner scanner = new Scanner(new File(clock.getDestination()));
 		String line = null;
 		String i = null;
 
@@ -46,24 +37,16 @@ public class TimeContent {
 			try {
 
 				process.waitFor();
-				//scanner.wait(process.waitFor());
 				line = scanner.nextLine();
-				//scanner.wait();
-				//scanner.nextLine();
-
 
 				if (line != null)
 					i = line;
 
 			}catch (NoSuchElementException exception){
 				System.out.println("Kein Eintrag wurde hinterlegt!");
-			/*clock = new Time();
-			clock.run(clock.generate());
-			validator = new Validator();*/
-			}
-			//process.exitValue();
-		}
 
+			}
+		}
 
 		this.time = null;
 		return i;
