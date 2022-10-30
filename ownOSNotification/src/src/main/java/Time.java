@@ -1,3 +1,5 @@
+import lombok.Getter;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -5,6 +7,8 @@ public class Time {
     ProcessBuilder clock;
     final String title = "time";
     final String description = "choose a time";
+	@Getter
+	final String destination = "/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/time.txt";
 
 
     public ProcessBuilder generate(){
@@ -22,7 +26,7 @@ public class Time {
     }
 
 	private void save(ProcessBuilder clock){
-		clock.redirectOutput(new File("/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/time.txt"));
+		clock.redirectOutput(new File(destination));
 	}
 
     public static void main(String[] args) throws IOException {

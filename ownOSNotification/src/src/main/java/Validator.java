@@ -1,6 +1,7 @@
 import jdk.jfr.Description;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.stream.IntStream;
 
 public class Validator {
@@ -74,12 +75,12 @@ public class Validator {
 		}
 	}
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         Validator validator = new Validator();
         boolean checkDay = validator.checkDay(new DateContent().getDay());
         boolean checkMonth = validator.checkMonth(new DateContent().getMonth());
 		boolean checkYear = validator.checkYear(new DateContent().getYear());
-		boolean checkTime = validator.checkTime(new TimeContent().getTime());
+		boolean checkTime = validator.checkTime(new TimeContent(new Validator(), new Time()).getTime());
         System.out.println(checkDay);
         System.out.println(checkMonth);
         System.out.println(checkYear);
