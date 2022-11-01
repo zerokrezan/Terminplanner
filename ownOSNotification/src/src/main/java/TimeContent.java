@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class TimeContent {
     @Getter
-    String time;
+    private String time;
 
 	TimeContent(Validator validator, Time clock) throws IOException, InterruptedException {
 

@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class Time {
-    ProcessBuilder clock;
-    final String title = "time";
-    final String description = "choose a time";
+    private ProcessBuilder clock;
+    private final String title = "time";
+    private final String description = "choose a time";
 	@Getter
-	final String destination = "/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/time.txt";
+	private final String destination = "/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/time.txt";
 
 
     public ProcessBuilder generate(){
