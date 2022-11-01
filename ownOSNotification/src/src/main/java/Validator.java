@@ -64,7 +64,9 @@ public class Validator {
 				int[] checkMinute1 = minute1.filter(i -> Integer.toString(i).equals(time.substring(3, 4))).toArray();
 				int[] checkMinute2 = minute2.filter(i -> Integer.toString(i).equals(time.substring(4, 5))).toArray();
 
-				return checkHour1.length >= 1 && checkHour2.length >= 1 && checkMinute1.length >= 1 && checkMinute2.length >= 1;
+				return checkHour1.length >= 1 && checkHour2.length >= 1 && checkMinute1.length >= 1 && checkMinute2.length >= 1
+						&& Integer.parseInt(time.substring(0,2)) >= 0 && Integer.parseInt(time.substring(0,2)) <= 24
+						&& Integer.parseInt(time.substring(3,5)) >= 00 && Integer.parseInt(time.substring(3,5)) <= 59;
 
 			}
 			return false;

@@ -44,7 +44,7 @@ public class DateContent {
 	private String[] setContent(Date date) throws IOException {
 		PrintWriter pw = new PrintWriter(date.getDestination());
 		Scanner scanner = new Scanner(new File(date.getDestination()));
-		String line = null;
+		String line;
 		String i = null;
 
 		Process process = date.run(date.generate());
