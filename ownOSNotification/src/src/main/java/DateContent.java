@@ -71,9 +71,10 @@ public class DateContent {
 	}
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-        DateContent date = new DateContent(new Validator(), new Date());
+        DateContent dateContent = new DateContent(new Validator(), new Date());
 		TimeContent timeContent = new TimeContent(new Validator(), new Time());
 		SubjectContent subjectContent = new SubjectContent( new Subject());
+		Mail mail = new Mail(dateContent, timeContent, subjectContent);
 
 
     }
