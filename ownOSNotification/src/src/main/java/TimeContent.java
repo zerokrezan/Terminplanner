@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class TimeContent {
     @Getter
     private String time;
-
 	TimeContent(Validator validator, Time clock) throws IOException, InterruptedException {
 
 		this.time = setTime(clock);
