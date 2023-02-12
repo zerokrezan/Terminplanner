@@ -16,7 +16,6 @@ public class DateContent {
     private String year;
 
     DateContent(Validator validator, Date date) throws IOException {
-
 		String[] content = setContent(date);
 	    this.day = content[0];
 	    this.month = content[1];
@@ -36,13 +35,10 @@ public class DateContent {
 		    checkDay = validator.checkDay(this.day);
 			checkMonth = validator.checkMonth(this.month);
 			checkYear = validator.checkYear(this.year);
-
 	    }
-
     }
 
 	private String[] setContent(Date date) throws IOException {
-		PrintWriter pw = new PrintWriter(date.getDestination());
 		Scanner scanner = new Scanner(new File(date.getDestination()));
 		String line;
 		String i = null;
@@ -51,7 +47,6 @@ public class DateContent {
 
 		synchronized (scanner){
 			try {
-
 				process.waitFor();
 				line = scanner.nextLine();
 
@@ -60,24 +55,13 @@ public class DateContent {
 					this.month = line.substring(3,6);
 					this.year = line.substring(6,10);
 
-
 			}catch (NoSuchElementException | InterruptedException exception){
 				System.out.println("Kein Eintrag wurde hinterlegt!");
-
 			}
 		}
 
 		return new String[]{day, month,year};
 	}
-
-	public static void main(String[] args) throws IOException, InterruptedException {
-        DateContent dateContent = new DateContent(new Validator(), new Date());
-		TimeContent timeContent = new TimeContent(new Validator(), new Time());
-		SubjectContent subjectContent = new SubjectContent( new Subject());
-		Mail mail = new Mail(dateContent, timeContent, subjectContent);
-
-
-    }
 
 
 

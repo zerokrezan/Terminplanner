@@ -57,7 +57,6 @@ public class Validator {
 
 		try{
 			if (time.length() == "__:__ Uhr".length()) {
-
 				int[] checkHour1 = hour1.filter(i -> Integer.toString(i).equals(time.substring(0, 1))).toArray();
 				int[] checkHour2 = hour2.filter(i -> Integer.toString(i).equals(time.substring(1, 2))).toArray();
 
@@ -67,25 +66,12 @@ public class Validator {
 				return checkHour1.length >= 1 && checkHour2.length >= 1 && checkMinute1.length >= 1 && checkMinute2.length >= 1
 						&& Integer.parseInt(time.substring(0,2)) >= 0 && Integer.parseInt(time.substring(0,2)) <= 24
 						&& Integer.parseInt(time.substring(3,5)) >= 00 && Integer.parseInt(time.substring(3,5)) <= 59;
-
 			}
-			return false;
 
 		}catch (NullPointerException exception){
 			System.out.println("Kein Eintrag vorhanden!");
 			return false;
 		}
+		return false;
 	}
-
-    public static void main(String[] args) throws IOException, InterruptedException {
-        Validator validator = new Validator();
-        boolean checkDay = validator.checkDay(new DateContent(new Validator(), new Date()).getDay());
-        boolean checkMonth = validator.checkMonth(new DateContent(new Validator(), new Date()).getMonth());
-		boolean checkYear = validator.checkYear(new DateContent(new Validator(), new Date()).getYear());
-		boolean checkTime = validator.checkTime(new TimeContent(new Validator(), new Time()).getTime());
-        System.out.println(checkDay);
-        System.out.println(checkMonth);
-        System.out.println(checkYear);
-        System.out.println(checkTime);
-    }
 }

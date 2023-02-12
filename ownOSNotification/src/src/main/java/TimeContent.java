@@ -16,16 +16,17 @@ public class TimeContent {
 		this.time = setTime(clock);
 
 		boolean checkTime = validator.checkTime(this.time);
+		boolean firstAttempt = true;
 
 		while (!checkTime){
 			this.time = setTime(clock);
 			checkTime = validator.checkTime(this.time);
-		}
+			firstAttempt = false;
+			}
     }
 
 	private String setTime(Time clock) throws IOException, InterruptedException {
 
-		PrintWriter pw = new PrintWriter(clock.getDestination());
 		Scanner scanner = new Scanner(new File(clock.getDestination()));
 		String line = null;
 		String timeX = null;
@@ -34,7 +35,6 @@ public class TimeContent {
 
 		synchronized (scanner){
 			try {
-
 				process.waitFor();
 				line = scanner.nextLine();
 
@@ -43,16 +43,8 @@ public class TimeContent {
 
 			}catch (NoSuchElementException exception){
 				System.out.println("Kein Eintrag wurde hinterlegt!");
-
 			}
 		}
-
 		return timeX;
 	}
-
-	public static void main(String[] args) throws IOException, InterruptedException {
-        TimeContent timeContent = new TimeContent(new Validator(), new Time());
-        //System.out.println(timeContent.getTime());
-
-    }
 }

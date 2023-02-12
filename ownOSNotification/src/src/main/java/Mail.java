@@ -2,6 +2,8 @@ import com.aspose.email.MailAddress;
 import com.aspose.email.MailMessage;
 import com.aspose.email.SmtpClient;
 
+import java.io.IOException;
+
 public class Mail {
 	private String date;
 	private String time;
@@ -9,12 +11,14 @@ public class Mail {
 	//private String content;
 	private final String senderAddress = ""; //set here the senderAddress as desired
 	private final String recipientAddress = ""; //set here the recipientAddress as desired
+	private String body;
 
 
-	public Mail(DateContent dateContent, TimeContent timeContent, SubjectContent subjectContent){
+	public Mail(DateContent dateContent, TimeContent timeContent, SubjectContent subjectContent, BodyContent bodyContent){
 		this.date = dateContent.getDay()+dateContent.getMonth()+dateContent.getYear();
 		this.time = timeContent.getTime();
 		this.subject = subjectContent.getSubjectName();
+		this.body = bodyContent.getBodyContent();
 		generateContent();
 
 	}
@@ -25,7 +29,8 @@ public class Mail {
 		message.setSubject(this.subject);
 		message.setBody("This is the body of the email.\n" +
 				date + "\n"+
-				time + "\n");
+				time + "\n"+
+				body + "\n");
 		message.setFrom(new MailAddress(senderAddress, "Sender 1", false));
 
 		// Add To recipients and CC recipients
@@ -55,6 +60,17 @@ public class Mail {
 		{
 			ex.printStackTrace();
 		}
+
+	}
+	public static void main(String[] args) throws IOException, InterruptedException {
+		DateContent dateContent = new DateContent(new Validator(), new Date());
+		TimeContent timeContent = new TimeContent(new Validator(), new Time());
+		SubjectContent subjectContent = new SubjectContent( new Subject());
+		BodyContent bodyContent = new BodyContent(new Body());
+
+
+		//Mail mail = new Mail(new DateContent(new Validator(), new Date()), new TimeContent(new Validator(), new Time()), new SubjectContent( new Subject()),new BodyContent(new Body()) );
+
 
 	}
     /*public static void main(String[] args) {

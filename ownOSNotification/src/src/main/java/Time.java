@@ -29,13 +29,4 @@ public class Time {
 		clock.redirectOutput(new File(destination));
 	}
 
-    public static void main(String[] args) throws IOException {
-        ProcessBuilder clock;
-        Time time = new Time();
-        clock = time.generate();
-
-        time.run(clock);
-
-
-    }
 }

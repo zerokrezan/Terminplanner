@@ -22,15 +22,4 @@ public class Notification {
         processBuilder.inheritIO().start();
     }
 
-    public static void main(String[] args) throws IOException {
-
-        ProcessBuilder processBuilder1;
-        Notification notification = new Notification("testersdrdsr", "contentTest");
-        processBuilder1 = notification.generate();
-        notification.run(processBuilder1);
-
-    }
-
-
-
 }

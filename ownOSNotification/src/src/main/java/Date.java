@@ -28,14 +28,4 @@ public class Date {
 	}
 
 
-	public static void main(String[] args) throws IOException {
-        ProcessBuilder calendar1;
-        Date date = new Date();
-        calendar1 = date.generate();
-
-        date.run(calendar1);
-
-
-    }
-
 }
