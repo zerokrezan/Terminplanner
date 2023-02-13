@@ -13,7 +13,7 @@ public class SubjectContent {
 	SubjectContent(Subject subject) throws IOException, InterruptedException {
 
 		this.subjectName = setSubjectName(subject);
-		while ( this.subjectName == null || this.subjectName.isEmpty() )
+		while (this.subjectName == null || this.subjectName.isEmpty())
 			this.subjectName = setSubjectName(subject);
 
 	}
@@ -27,7 +27,7 @@ public class SubjectContent {
 
 		Process process = subject.run(subject.generate());
 
-		synchronized (scanner){
+		synchronized (scanner) {
 			try {
 
 				process.waitFor();
@@ -36,7 +36,7 @@ public class SubjectContent {
 				if (line != null)
 					subjectNameX = line;
 
-			}catch (NoSuchElementException exception){
+			} catch (NoSuchElementException exception) {
 				System.out.println("Kein Eintrag wurde hinterlegt!");
 
 			}

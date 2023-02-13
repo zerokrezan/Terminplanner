@@ -14,23 +14,23 @@ public class Mail {
 	private String body;
 
 
-	public Mail(DateContent dateContent, TimeContent timeContent, SubjectContent subjectContent, BodyContent bodyContent){
-		this.date = dateContent.getDay()+dateContent.getMonth()+dateContent.getYear();
+	public Mail(DateContent dateContent, TimeContent timeContent, SubjectContent subjectContent, BodyContent bodyContent) {
+		this.date = dateContent.getDay() + dateContent.getMonth() + dateContent.getYear();
 		this.time = timeContent.getTime();
 		this.subject = subjectContent.getSubjectName();
 		this.body = bodyContent.getBodyContent();
 		generateContent();
 
 	}
-	private void generateContent(){
+
+	private void generateContent() {
 		MailMessage message = new MailMessage();
 
 		// Set subject of the message, body and sender information
 		message.setSubject(this.subject);
-		message.setBody("This is the body of the email.\n" +
-				date + "\n"+
-				time + "\n"+
-				body + "\n");
+		message.setBody(body + "\n\n" +
+				"Datum: " + date + "\n" +
+				"Uhrzeit: " + time + "\n");
 		message.setFrom(new MailAddress(senderAddress, "Sender 1", false));
 
 		// Add To recipients and CC recipients
@@ -40,7 +40,7 @@ public class Mail {
 
 	}
 
-	private void createSmtpClient(MailMessage message){
+	private void createSmtpClient(MailMessage message) {
 		// Create an instance of SmtpClient Class
 		SmtpClient client = new SmtpClient();
 
@@ -50,26 +50,24 @@ public class Mail {
 		client.setPassword("");//set here your own Mail-Login password
 		client.setPort(587);
 
-		try
-		{
+		try {
 			// Client.Send will send this message
 			client.send(message);
-		}
-
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 
 	}
+
 	public static void main(String[] args) throws IOException, InterruptedException {
-		DateContent dateContent = new DateContent(new Validator(), new Date());
+		/*DateContent dateContent = new DateContent(new Validator(), new Date());
 		TimeContent timeContent = new TimeContent(new Validator(), new Time());
 		SubjectContent subjectContent = new SubjectContent( new Subject());
-		BodyContent bodyContent = new BodyContent(new Body());
+		BodyContent bodyContent = new BodyContent(new Body());*/
 
 
-		//Mail mail = new Mail(new DateContent(new Validator(), new Date()), new TimeContent(new Validator(), new Time()), new SubjectContent( new Subject()),new BodyContent(new Body()) );
+		Mail mail = new Mail(new DateContent(new Validator(), new Date()), new TimeContent(new Validator(), new Time()), new SubjectContent(new Subject()), new BodyContent(new Body()));
+		mail.generateContent();
 
 
 	}

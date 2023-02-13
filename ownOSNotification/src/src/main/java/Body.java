@@ -12,7 +12,7 @@ public class Body {
 	@Getter
 	private final String destination = "/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/body.txt";
 
-	public ProcessBuilder generate(){
+	public ProcessBuilder generate() {
 		body = new ProcessBuilder("zenity",
 				"--entry",
 				"--title=" + title,

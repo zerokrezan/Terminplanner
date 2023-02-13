@@ -4,28 +4,28 @@ import java.io.File;
 import java.io.IOException;
 
 public class Time {
-    private ProcessBuilder clock;
-    private final String title = "time";
-    private final String description = "choose a time";
+	private ProcessBuilder clock;
+	private final String title = "time";
+	private final String description = "choose a time";
 	@Getter
 	private final String destination = "/home/rezan/Schreibtisch/Terminplanner/ownOSNotification/src/src/main/resources/tmp/time.txt";
 
 
-    public ProcessBuilder generate(){
-        clock = new ProcessBuilder("zenity",
-                "--entry",
-                "--title=" + title,
-                "--text=" + description + "like this: \"09:15 Uhr\"",
-		        "--entry-text=" + "__:__ Uhr");
-        return clock;
-    }
+	public ProcessBuilder generate() {
+		clock = new ProcessBuilder("zenity",
+				"--entry",
+				"--title=" + title,
+				"--text=" + description + "like this: \"09:15 Uhr\"",
+				"--entry-text=" + "__:__ Uhr");
+		return clock;
+	}
 
-    public Process run(ProcessBuilder clock) throws IOException {
+	public Process run(ProcessBuilder clock) throws IOException {
 		save(clock);
-        return clock.start();
-    }
+		return clock.start();
+	}
 
-	private void save(ProcessBuilder clock){
+	private void save(ProcessBuilder clock) {
 		clock.redirectOutput(new File(destination));
 	}
 

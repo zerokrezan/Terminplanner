@@ -1,28 +1,26 @@
 import lombok.Getter;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class TimeContent {
-    @Getter
-    private String time;
-	TimeContent(Validator validator, Time clock) throws IOException, InterruptedException {
+	@Getter
+	private String time;
 
+	TimeContent(Validator validator, Time clock) throws IOException, InterruptedException {
 		this.time = setTime(clock);
 
 		boolean checkTime = validator.checkTime(this.time);
 		boolean firstAttempt = true;
 
-		while (!checkTime){
+		while (!checkTime) {
 			this.time = setTime(clock);
 			checkTime = validator.checkTime(this.time);
 			firstAttempt = false;
-			}
-    }
+		}
+	}
 
 	private String setTime(Time clock) throws IOException, InterruptedException {
 
@@ -32,7 +30,7 @@ public class TimeContent {
 
 		Process process = clock.run(clock.generate());
 
-		synchronized (scanner){
+		synchronized (scanner) {
 			try {
 				process.waitFor();
 				line = scanner.nextLine();
@@ -40,7 +38,7 @@ public class TimeContent {
 				if (line != null)
 					timeX = line;
 
-			}catch (NoSuchElementException exception){
+			} catch (NoSuchElementException exception) {
 				System.out.println("Kein Eintrag wurde hinterlegt!");
 			}
 		}
