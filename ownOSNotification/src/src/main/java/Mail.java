@@ -26,6 +26,7 @@ public class Mail {
 		// Set up appointment
 		MailAddressCollection attendees = new MailAddressCollection();
 		attendees.add("yourMailAdress");
+		//your second(any adress) mail adress is needed to create an appointment, even though it won't be used:
 		attendees.add("yourSecondMailAdress");
 
 
