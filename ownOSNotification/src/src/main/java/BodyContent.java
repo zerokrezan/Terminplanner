@@ -8,8 +8,6 @@ public class BodyContent {
 	@Getter
 	private String bodyContent;
 
-	private StringBuilder bodyContentBuilder;
-
 	BodyContent(Body body) throws IOException, InterruptedException {
 		this.bodyContent = setBodyContent(body);
 		while (this.bodyContent == null || this.bodyContent.isEmpty())

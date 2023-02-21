@@ -1,9 +1,7 @@
 import lombok.Getter;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -52,8 +50,8 @@ public class DateContent {
 
 				if (line != null)
 					this.day = line.substring(0, 3);
-				this.month = line.substring(3, 6);
-				this.year = line.substring(6, 10);
+					this.month = line.substring(3, 6);
+					this.year = line.substring(6, 10);
 
 			} catch (NoSuchElementException | InterruptedException exception) {
 				System.out.println("Kein Eintrag wurde hinterlegt!");
