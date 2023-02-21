@@ -5,3 +5,5 @@ Eine kleine Anwendung wie man mit dem Programm "zenity" https://wiki.ubuntuusers
 Mails versenden kann.
 
 In dieser Anwendung geht es dabei um ein Beispiel, wie man erstellte Termine mithilfe des GUI-Programms "zenity" mittels Mailversand über die "Aspose.Email"-API realisieren kann.
+
+Die Klasse Mail.java stellt dabei die Main Klasse dar.
